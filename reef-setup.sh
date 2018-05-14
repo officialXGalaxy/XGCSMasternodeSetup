@@ -54,12 +54,12 @@ genkey=$1
 
 clear
 
-read -t 1 -n 10000 discard 
 read -p 'Enter a new username :' newuser
 
 adduser $newuser
 groups $newuser
 usermod -aG sudo $newuser
+sudo su - $newuser
 
 clear
 
