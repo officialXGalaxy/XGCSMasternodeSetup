@@ -1,6 +1,6 @@
 #!/bin/bash
-# ITIS.Network Masternode Setup Script V1.3 for Ubuntu 16.04 LTS
-# (c) 2018 by Dwigt007 for ITIS.Network
+# Reef Masternode Setup Script V1.3 for Ubuntu 16.04 LTS
+# (c) 2018 by Dwigt007 for Reef Coin
 #
 # Script will attempt to autodetect primary public IP address
 # and generate masternode private key unless specified in command line
@@ -9,10 +9,10 @@
 # bash itis-setup.sh [Masternode_Private_Key]
 #
 # Example 1: Existing genkey created earlier is supplied
-# bash itis-setup.sh 27dSmwq9CabKjo2L3UD1HvgBP3ygbn8HdNmFiGFoVbN1STcsypy
+# bash reef-setup.sh 27dSmwq9CabKjo2L3UD1HvgBP3ygbn8HdNmFiGFoVbN1STcsypy
 #
 # Example 2: Script will generate a new genkey automatically
-# bash itis-setup.sh
+# bash reef-setup.sh
 #
 
 #Color codes
@@ -22,7 +22,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 #ITIS TCP port
-PORT=60222
+PORT=13058
 
 #Clear keyboard input buffer
 function clear_stdin { while read -r -t 0; do read -r; done; }
@@ -32,17 +32,17 @@ function delay { echo -e "${GREEN}Sleep for $1 seconds...${NC}"; sleep "$1"; }
 
 #Stop daemon if it's already running
 function stop_daemon {
-    if pgrep -x 'itisd' > /dev/null; then
-        echo -e "${YELLOW}Attempting to stop itisd${NC}"
-        itis-cli stop
+    if pgrep -x 'reefd' > /dev/null; then
+        echo -e "${YELLOW}Attempting to stop reefd${NC}"
+        reef-cli stop
         delay 30
-        if pgrep -x 'itis' > /dev/null; then
+        if pgrep -x 'reef' > /dev/null; then
             echo -e "${RED}itisd daemon is still running!${NC} \a"
             echo -e "${RED}Attempting to kill...${NC}"
-            pkill itisd
+            pkill reefd
             delay 30
-            if pgrep -x 'itisd' > /dev/null; then
-                echo -e "${RED}Can't stop itisd! Reboot and try again...${NC} \a"
+            if pgrep -x 'reefd' > /dev/null; then
+                echo -e "${RED}Can't stop reefd! Reboot and try again...${NC} \a"
                 exit 2
             fi
         fi
@@ -53,61 +53,8 @@ function stop_daemon {
 genkey=$1
 
 clear
-echo -e "
-////////////////////////////////////+osyhdmNNMMMMMMMMMMNNmmhyys+////////////////////////////////////
-//////////////////////////////+oydmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNdys+//////////////////////////////
-//////////////////////////+shmMMMMMMMMMMMNmmdNMMMMMMMMMdmmNMMMMMMMMMMMNds+//////////////////////////
-///////////////////////oymMMMMMMMMNmhyo+////yMMMMMMMMMMh////+oshdNMMMMMMMMmho///////////////////////
-////////////////////+hNMMMMMMMmhs+/////////hMMMMMsoNMMMMd/////////+shmNMMMMMMNho////////////////////
-//////////////////smMMMMMMNhs+////////////dMMMMNo//+NMMMMm+////////////shmMMMMMMmy//////////////////
-///////////////+yNMMMMMNho//////////////+mMMMMN+////+mMMMMm+//////////////ohNMMMMMNh+///////////////
-/////////////+hNMMMMMds+///////////////+mMMMMm+///////dMMMMNo////////////////odMMMMMNh+/////////////
-////////////yNMMMMNdo/////////////////oNMMMMd//////////hMMMMNs/////////////////+hNMMMMNy////////////
-//////////omMMMMMd+//////////////////sNMMMMh////////////yMMMMMy//////////////////+hNMMMMms//////////
-/////////yNMMMMmo///////////////////yMMMMMh//////////////yMMMMMy///////////////////odMMMMMh/////////
-///////+dMMMMNy////////////////////yMMMMMy////////////////sNMMMMh////////////////////sNMMMMmo///////
-//////oNMMMMmo////////////////////hMMMMNs//////////////////oNMMMMd+///////////////////+dMMMMNs//////
-/////oNMMMMd/////////////////////dMMMMNo////////////////////+mMMMMm+////////////////////hMMMMMs/////
-////oNMMMMh////////////////////+mMMMMm+//////////////////////+mMMMMN+////////////////////yMMMMMs////
-///+NMMMMh////////////////////+NMMMMm+/////////////////////////dMMMMNo////////////////////yMMMMNo///
-///mMMMMd////////////////////oNMMMMd////////////////////////////hMMMMNs////////////////////hMMMMN///
-//hMMMMm////////////////////sMMMMMMm+////////////////////////////yMMMMMy////////////////////dMMMMd//
-/+MMMMMo///////////////////yMMMMMMMMNo////////////////////////////sNMMMMh///////////////////+MMMMMo/
-/dMMMMd///////////////////hMMMMMmMMMMNo////////////////////////////oNMMMMd///////////////////yMMMMm/
-/MMMMMo//////////////////dMMMMNo/hMMMMMs////////////////////////////+NMMMMm//////////////////+MMMMM+
-yMMMMm//////////////////dMMMMN+///yMMMMMyoooooooooooooooooooooooooooosMMMMMm+/////////////////hMMMMh
-dMMMMy////////////////+mMMMMm+/////sMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNo////////////////sMMMMm
-NMMMMo///////////////oNMMMMm////////oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNo///////////////+MMMMM
-MMMMM+//////////////oNMMMMd//////////+NMMMMMssssssssssssNMMMMNssssssssssshMMMMMs///////////////MMMMM
-MMMMM+/////////////sMMMMMy////////////+mMMMMN+/////////mMMMMN+////////////sMMMMMy//////////////MMMMM
-MMMMM+////////////yMMMMMy///////////////dMMMMNo//////+NMMMMm+//////////////sMMMMMd/////////////MMMMM
-NMMMMo///////////hMMMMMs/////////////////hMMMMNs////oNMMMMd/////////////////oNMMMMd///////////+MMMMM
-dMMMMy//////////dMMMMNo///////////////////yMMMMMy//sMMMMMh///////////////////+mMMMMm+/////////sMMMMm
-sMMMMm////////+mMMMMN+/////////////////////sMMMMMhyMMMMMy/////////////////////+mMMMMN+////////dMMMMh
-/MMMMMo//////+NMMMMm+///////////////////////oNMMMMMMMMMs////////////////////////dMMMMNo//////+MMMMM+
-/hMMMMd/////oNMMMMd//////////////////////////oNMMMMMMNo//////////////////////////hMMMMMs/////hMMMMm/
-/+MMMMMs///sNMMMMh////////////////////////////oMMMMMNo////////////////////////////yMMMMMy///oMMMMMo/
-//yMMMMN+/yMMMMMy////////////////////////////+mMMMMm+//////////////////////////////sMMMMMh//mMMMMh//
-///mMMMMdhMMMMMs////////////////////////////oNMMMMd+////////////////////////////////oNMMMMdhMMMMN///
-///+NMMMMMMMMNo////////////////////////////sNMMMMh///////////////////////////////////oNMMMMMMMMNo///
-////oNMMMMMMMMmmmmmmmmmmmmmmmmmmmmmmmmmmmmmMMMMMMmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmNMMMMMMMNs////
-/////oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNs/////
-//////+mMMMMMMmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmMMMMMMNo//////
-///////+dMMMMMh+/////////////////////////////////////////////////////////////////////yMMMMMm+///////
-/////////yNMMMMms//////////////////////////////////////////////////////////////////omMMMMNh/////////
-//////////+dMMMMMdo//////////////////////////////////////////////////////////////odMMMMMmo//////////
-////////////sNMMMMMdo//////////////////////////////////////////////////////////odMMMMMNy////////////
-//////////////yNMMMMMmy+////////////////////////////////////////////////////+smMMMMMNh+/////////////
-////////////////ymMMMMMNds////////////////////////////////////////////////ohNMMMMMNy+///////////////
-//////////////////sdNMMMMMNdy+////////////////////////////////////////+sdNMMMMMNds//////////////////
-////////////////////+ymMMMMMMMNdyo////////////////////////////////+shmMMMMMMMmy+////////////////////
-///////////////////////+ydNMMMMMMMNmdhso+//////////////////+osydmNMMMMMMMMmyo///////////////////////
-///////////////////////////oymNMMMMMMMMMMMNmmddddhhddddmmNMMMMMMMMMMMMmhs///////////////////////////
-///////////////////////////////oshmNMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmhyo///////////////////////////////
-/////////////////////////////////////+syyhdmNNNMMMMMMMNNmmhhyso/////////////////////////////////////
-"
-delay 5
-echo -e "${YELLOW}ITIS Masternode Setup Script V1.3 for Ubuntu 16.04 LTS${NC}"
+
+echo -e "${YELLOW}Reef Masternode Setup Script V1.3 for Ubuntu 16.04 LTS${NC}"
 echo -e "${GREEN}Updating system and installing required packages...${NC}"
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
 
@@ -145,6 +92,7 @@ sudo apt-get -y install libminiupnpc-dev
 
 sudo apt-get -y install fail2ban
 sudo service fail2ban restart
+sudo apt-get install -y unzip libzmq3-dev build-essential libssl-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libboost-system1.58.0 libboost1.58-all-dev libdb4.8++ libdb4.8 libdb4.8-dev libdb4.8++-dev libevent-pthreads-2.0-5
 
 sudo apt-get install ufw -y
 sudo apt-get update -y
@@ -160,7 +108,8 @@ echo -e "${YELLOW}"
 sudo ufw --force enable
 echo -e "${NC}"
 
-#Generating Random Password for itisd JSON RPC
+#Generating Random Password for reefd JSON RPC
+rpcuser=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 #Create 2GB swap file
@@ -184,60 +133,61 @@ fi
 
  #Installing Daemon
  cd ~
- #add git binaries here
+wget https://github.com/reefcoin-io/reefcore/releases/download/v0.5.0/reefcore_linux.zip
+
+unzip reefcore_linux.zip
  
  stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ItisMasternodeSetup/itis-linux-cli-v2.0.0.1/itis* /usr/bin/
- sudo chmod 755 -R ~/ItisMasternodeSetup
- sudo chmod 755 /usr/bin/itis*
+ #sudo cp reefMasternodeSetup/itis-linux-cli-v2.0.0.1/itis* /usr/bin/
+ #sudo chmod 755 -R ~/ItisMasternodeSetup
+ #sudo chmod 755 /usr/bin/itis*
  
  # Deploy masternode monitoring script
- cp ~/ItisMasternodeSetup/nodemon.sh /usr/local/bin
+ cp ~/reef/nodemon.sh /usr/local/bin
  sudo chmod 711 /usr/local/bin/nodemon.sh
  
  #Create itis datadir
- if [ ! -f ~/.itis/itis.conf ]; then 
- 	sudo mkdir ~/.itis
+ if [ ! -f ~/.reefcore/reef.conf ]; then 
+ 	sudo mkdir ~/.reefcore
  fi
 
-echo -e "${YELLOW}Creating itis.conf...${NC}"
+echo -e "${YELLOW}Creating reef.conf...${NC}"
 
 # If genkey was not supplied in command line, we will generate private key on the fly
 if [ -z $genkey ]; then
-    cat <<EOF > ~/.itis/itis.conf
-rpcuser=itisrpc
+    cat <<EOF > ~/.reefcore/reef.conf
+rpcuser=$rpcuser
 rpcpassword=$rpcpassword
 EOF
 
-    sudo chmod 755 -R ~/.itis/itis.conf
+    sudo chmod 755 -R ~/.reefcore/reef.conf
 
     #Starting daemon first time just to generate masternode private key
-    itisd -daemon
+    reefd -daemon
     delay 30
 
     #Generate masternode private key
     echo -e "${YELLOW}Generating masternode private key...${NC}"
-    genkey=$(itis-cli masternode genkey)
+    genkey=$(reef-cli masternode genkey)
     if [ -z "$genkey" ]; then
         echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
         echo -e "${RED}ERROR: Reboot VPS and try again or supply existing genkey as a parameter.${NC}"
         exit 1
     fi
     
-    #Stopping daemon to create isis.conf
+    #Stopping daemon to create reef.conf
     stop_daemon
     delay 30
 fi
 
 # Create itis.conf
-cat <<EOF > ~/.itis/itis.conf
-rpcuser=itisrpc
+cat <<EOF > ~/.reefcore/reef.conf
+rpcuser=$rpcuser
 rpcpassword=$rpcpassword
 rpcallowip=127.0.0.1
 onlynet=ipv4
-rpcport=20025
 listen=1
 server=1
 daemon=1
@@ -245,28 +195,38 @@ maxconnections=64
 externalip=$publicip
 masternode=1
 masternodeprivkey=$genkey
-addnode=45.76.85.193
-addnode=85.214.230.101
-addnode=104.238.188.93
-addnode=140.82.37.169
-addnode=45.32.183.12
-addnode=107.191.58.32
-addnode=207.218.118.8
-addnode=81.177.166.101
-addnode=185.203.243.243
-addnode=62.77.156.207
-addnode=95.84.138.69
-addnode=5.135.76.216
-addnode=144.202.83.84
-addnode=185.26.28.154
+addnode=159.89.234.102
+addnode=107.173.16.11
+addnode=45.61.159.25
+addnode=167.160.172.142
+addnode=23.95.197.35
+addnode=167.99.159.47
+addnode=18.191.61.128
+addnode=80.240.17.241
+addnode=40.89.134.77
+addnode=207.246.93.210
+addnode=54.201.97.113
+addnode=159.65.227.105
+addnode=108.61.157.251
+addnode=45.77.151.190
+addnode=206.189.232.5
+addnode=8.9.37.19
+addnode=45.77.96.106
+addnode=104.207.132.231
+addnode=8.9.30.168
+addnode=8.9.31.92
+addnode=45.76.7.226
+addnode=149.28.36.157
+addnode=149.28.37.16
+addnode=207.246.127.203
 EOF
 
 #Finally, starting itis daemon with new itis.conf
-itisd
+reefd
 delay 5
 
 #Setting auto start cron job for itisd
-cronjob="@reboot sleep 30 && itisd"
+cronjob="@reboot sleep 30 && reefd"
 crontab -l > tempcron
 if ! grep -q "$cronjob" tempcron; then
     echo -e "${GREEN}Configuring crontab job...${NC}"
@@ -359,7 +319,7 @@ Enjoy your Itis Masternode and thanks for using this setup script!
 
 If you found this script useful, please donate to : i5tTc1KpuSpwagAKBnJajKfVe1FRmD7Hry
 ...and make sure to check back for updates!
-Authors: Allroad [fasterpool] , Dwigt007
+Author: Dwigt007
 "
 delay 30
 # Run nodemon.sh
