@@ -174,7 +174,7 @@ EOF
     sudo chmod 755 -R ~/.reefcore/reef.conf
 
     #Starting daemon first time just to generate masternode private key
-    reefd -daemon
+    ./reefd -daemon
     delay 30
 
     #Generate masternode private key
@@ -231,11 +231,11 @@ addnode=207.246.127.203
 EOF
 
 #Finally, starting itis daemon with new itis.conf
-reefd
+./reefd
 delay 5
 
 #Setting auto start cron job for itisd
-cronjob="@reboot sleep 30 && reefd"
+cronjob="@reboot sleep 30 && ./reefd"
 crontab -l > tempcron
 if ! grep -q "$cronjob" tempcron; then
     echo -e "${GREEN}Configuring crontab job...${NC}"
