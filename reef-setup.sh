@@ -54,15 +54,6 @@ genkey=$1
 
 clear
 
-read -p 'Enter a new username :' newuser
-
-adduser $newuser
-groups $newuser
-usermod -aG sudo $newuser
-sudo su - $newuser
-
-clear
-
 echo -e "${YELLOW}Reef Masternode Setup Script V1.3 for Ubuntu 16.04 LTS${NC}"
 echo -e "${GREEN}Updating system and installing required packages...${NC}"
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
