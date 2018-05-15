@@ -169,7 +169,7 @@ EOF
 
     #Generate masternode private key
     echo -e "${YELLOW}Generating masternode private key...${NC}"
-    genkey=$(reef-cli masternode genkey)
+    genkey=$(./reef-cli masternode genkey)
     if [ -z "$genkey" ]; then
         echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
         echo -e "${RED}ERROR: Reboot VPS and try again or supply existing genkey as a parameter.${NC}"
