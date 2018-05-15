@@ -194,30 +194,11 @@ maxconnections=64
 externalip=$publicip
 masternode=1
 masternodeprivkey=$genkey
-addnode=159.89.234.102
-addnode=107.173.16.11
-addnode=45.61.159.25
-addnode=167.160.172.142
-addnode=23.95.197.35
 addnode=167.99.159.47
 addnode=18.191.61.128
 addnode=80.240.17.241
 addnode=40.89.134.77
-addnode=207.246.93.210
-addnode=54.201.97.113
-addnode=159.65.227.105
-addnode=108.61.157.251
-addnode=45.77.151.190
-addnode=206.189.232.5
-addnode=8.9.37.19
-addnode=45.77.96.106
-addnode=104.207.132.231
-addnode=8.9.30.168
-addnode=8.9.31.92
-addnode=45.76.7.226
-addnode=149.28.36.157
-addnode=149.28.37.16
-addnode=207.246.127.203
+
 EOF
 
 #Finally, starting itis daemon with new itis.conf
