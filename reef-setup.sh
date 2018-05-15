@@ -32,14 +32,14 @@ function delay { echo -e "${GREEN}Sleep for $1 seconds...${NC}"; sleep "$1"; }
 
 #Stop daemon if it's already running
 function stop_daemon {
-    if pgrep -x 'reefd' > /dev/null; then
+    if pgrep -x './reefd' > /dev/null; then
         echo -e "${YELLOW}Attempting to stop reefd${NC}"
-        reef-cli stop
+        ./reef-cli stop
         delay 30
         if pgrep -x 'reef' > /dev/null; then
             echo -e "${RED}itisd daemon is still running!${NC} \a"
             echo -e "${RED}Attempting to kill...${NC}"
-            pkill reefd
+            pkill ./reefd
             delay 30
             if pgrep -x 'reefd' > /dev/null; then
                 echo -e "${RED}Can't stop reefd! Reboot and try again...${NC} \a"
