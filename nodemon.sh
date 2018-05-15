@@ -11,7 +11,7 @@ dpkg -s jq 2>/dev/null >/dev/null || sudo apt-get -y install jq
 
 #It is a one-liner script for now
 watch -ptn $dly "echo '===========================================================================
-Outbound connections to other Reef nodes [itis datadir: $datadir]
+Outbound connections to other Reef nodes [reef datadir: $datadir]
 ===========================================================================
 Node IP               Ping    Rx/Tx     Since  Hdrs   Height  Time   Ban
 Address               (ms)   (KBytes)   Block  Syncd  Blocks  (min)  Score
