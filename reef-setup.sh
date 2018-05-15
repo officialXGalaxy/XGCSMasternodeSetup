@@ -133,8 +133,7 @@ fi
 
  #Installing Daemon
  cd ~
-wget https://github.com/reefcoin-io/reefcore/releases/download/v0.5.0/reefcore_linux.zip
-
+wget https://github.com/reefcoin-io/reefcore/releases/download/v0.5.1/reefcore_linux.zip
 unzip reefcore_linux.zip
  
  stop_daemon
