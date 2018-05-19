@@ -82,7 +82,7 @@ sudo apt-get -y install wget nano htop jq
 sudo apt-get -y install libzmq3-dev
 sudo apt-get -y install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
 sudo apt-get -y install libevent-dev
-
+sudo apt-get instal zip unzip
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:bitcoin/bitcoin -y
 sudo apt-get -y update
@@ -196,10 +196,17 @@ maxconnections=64
 externalip=$publicip
 masternode=1
 masternodeprivkey=$genkey
-addnode=167.99.159.47
-addnode=18.191.61.128
+addnode=107.191.41.225
+addnode=108.61.132.69
+addnode=217.69.6.220
+addnode=91.121.166.208
+addnode=159.89.90.181
+addnode=37.187.108.47
+addnode=204.48.20.71
 addnode=80.240.17.241
 addnode=40.89.134.77
+addnode=18.219.177.195
+addnode=167.99.159.47
 
 EOF
 
