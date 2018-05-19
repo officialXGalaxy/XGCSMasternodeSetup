@@ -21,7 +21,7 @@ GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-#ITIS TCP port
+#REEF TCP port
 PORT=11058
 
 #Clear keyboard input buffer
@@ -141,7 +141,7 @@ rm -r reefcore_linux.zip
  stop_daemon
  
  # Deploy binaries to /usr/bin
- #sudo cp reefMasternodeSetup/itis-linux-cli-v2.0.0.1/itis* /usr/bin/
+ #sudo cp ReefMasternodeSetup/itis-linux-cli-v2.0.0.1/itis* /usr/bin/
  sudo chmod 755 -R ~/ReefMasternodeSetup
  #sudo chmod 755 /usr/bin/reef*
  
@@ -289,9 +289,9 @@ echo -e "${NC}-------------------------------------------------
 NOTE: To edit reef.conf, first stop the itisd daemon,
 then edit the reef.conf file and save it in nano: (Ctrl-X + Y + Enter),
 then start the reefd daemon back up:
-             to stop:   ${YELLOW}reef-cli stop${NC}
+             to stop:   ${YELLOW}./reef-cli stop${NC}
              to edit:   ${YELLOW}nano ~/.reefcore/reef.conf${NC}
-             to start:  ${YELLOW}reefd${NC}
+             to start:  ${YELLOW}./reefd${NC}
 ========================================================================
 To view Itis debug log showing all MN network activity in realtime:
              ${YELLOW}tail -f ~/.reefcore/debug.log${NC}
