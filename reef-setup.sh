@@ -204,7 +204,7 @@ addnode=40.89.134.77
 EOF
 
 #Finally, starting itis daemon with new itis.conf
-./reefd
+./reefd --daemon
 delay 5
 
 #Setting auto start cron job for itisd
