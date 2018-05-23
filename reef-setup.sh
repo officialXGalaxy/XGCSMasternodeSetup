@@ -22,7 +22,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 #REEF TCP port
-PORT=11058
+PORT=10058
 
 #Clear keyboard input buffer
 function clear_stdin { while read -r -t 0; do read -r; done; }
@@ -32,16 +32,16 @@ function delay { echo -e "${GREEN}Sleep for $1 seconds...${NC}"; sleep "$1"; }
 
 #Stop daemon if it's already running
 function stop_daemon {
-    if pgrep -x './reefd' > /dev/null; then
+    if pgrep -x 'reefd' > /dev/null; then
         echo -e "${YELLOW}Attempting to stop reefd${NC}"
-        ./reef-cli stop
+        reef-cli stop
         delay 30
         if pgrep -x 'reef' > /dev/null; then
             echo -e "${RED}reefd daemon is still running!${NC} \a"
             echo -e "${RED}Attempting to kill...${NC}"
-            pkill ./reefd
+            pkill reefd
             delay 30
-            if pgrep -x './reefd' > /dev/null; then
+            if pgrep -x 'reefd' > /dev/null; then
                 echo -e "${RED}Can't stop reefd! Reboot and try again...${NC} \a"
                 exit 2
             fi
@@ -133,23 +133,24 @@ fi
 
  #Installing Daemon
  cd ~
+ mkdir ~/reef/reefcore_linux
  rm -r reefcore_linux.zip
-wget https://github.com/reefcoin-io/reefcore/releases/download/v0.6.0/reefcore_linux.zip
-unzip reefcore_linux.zip
+   wget https://github.com/thermoflask/reefcore/releases/download/v0.8.0/reefcore_linux.zip
+unzip reefcore_linux.zip 
 rm -r reefcore_linux.zip
  
  stop_daemon
  
  # Deploy binaries to /usr/bin
- #sudo cp ReefMasternodeSetup/itis-linux-cli-v2.0.0.1/itis* /usr/bin/
+ sudo cp reef/reefcore_linux/reef* /usr/bin/
  sudo chmod 755 -R ~/ReefMasternodeSetup
- #sudo chmod 755 /usr/bin/reef*
+ sudo chmod 755 /usr/bin/reef*
  
  # Deploy masternode monitoring script
  cp ~/reef/nodemon.sh /usr/local/bin
  sudo chmod 711 /usr/local/bin/nodemon.sh
  
- #Create itis datadir
+ #Create reef datadir
  if [ ! -f ~/.reefcore/reef.conf ]; then 
  	sudo mkdir ~/.reefcore
  fi
@@ -166,12 +167,12 @@ EOF
     sudo chmod 755 -R ~/.reefcore/reef.conf
 
     #Starting daemon first time just to generate masternode private key
-    ./reefd -daemon
+    reefd -daemon
     delay 30
 
     #Generate masternode private key
     echo -e "${YELLOW}Generating masternode private key...${NC}"
-    genkey=$(./reef-cli masternode genkey)
+    genkey=$(reef-cli masternode genkey)
     if [ -z "$genkey" ]; then
         echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
         echo -e "${RED}ERROR: Reboot VPS and try again or supply existing genkey as a parameter.${NC}"
@@ -183,7 +184,7 @@ EOF
     delay 30
 fi
 
-# Create itis.conf
+# Create reef.conf
 cat <<EOF > ~/.reefcore/reef.conf
 rpcuser=$rpcuser
 rpcpassword=$rpcpassword
@@ -196,26 +197,22 @@ maxconnections=64
 externalip=$publicip
 masternode=1
 masternodeprivkey=$genkey
-addnode=107.191.41.225
-addnode=108.61.132.69
-addnode=217.69.6.220
-addnode=91.121.166.208
-addnode=159.89.90.181
-addnode=37.187.108.47
-addnode=204.48.20.71
-addnode=80.240.17.241
-addnode=40.89.134.77
-addnode=18.219.177.195
 addnode=167.99.159.47
-
+addnode=198.27.74.99
+addnode=204.48.20.71 
+addnode=108.61.132.69
+addnode=149.28.51.179
+addnode=149.28.62.61
+addnode=107.174.138.108 
+addnode= 107.174.138.115
 EOF
 
-#Finally, starting itis daemon with new itis.conf
-./reefd --daemon
+#Finally, starting reef daemon with new reef.conf
+reefd --daemon
 delay 5
 
-#Setting auto start cron job for itisd
-cronjob="@reboot sleep 30 && ./reefd"
+#Setting auto start cron job for reefd
+cronjob="@reboot sleep 30 && reefd"
 crontab -l > tempcron
 if ! grep -q "$cronjob" tempcron; then
     echo -e "${GREEN}Configuring crontab job...${NC}"
