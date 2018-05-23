@@ -136,14 +136,14 @@ fi
  mkdir ~/reef/reefcore_linux
  rm -r reefcore_linux.zip
    wget https://github.com/thermoflask/reefcore/releases/download/v0.8.0/reefcore_linux.zip
-unzip reefcore_linux.zip 
+unzip reefcore_linux.zip -d ~/reef/reefcore_linux
 rm -r reefcore_linux.zip
  
  stop_daemon
  
  # Deploy binaries to /usr/bin
  sudo cp reef/reefcore_linux/reef* /usr/bin/
- sudo chmod 755 -R ~/ReefMasternodeSetup
+ sudo chmod 755 -R ~/reef
  sudo chmod 755 /usr/bin/reef*
  
  # Deploy masternode monitoring script
