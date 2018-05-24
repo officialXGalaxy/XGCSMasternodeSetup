@@ -134,8 +134,8 @@ fi
  #Installing Daemon
  cd ~
  mkdir ~/reef/reefcore_linux
- rm -r reefcore_linux.zip
-   wget https://github.com/thermoflask/reefcore/releases/download/v0.8.0/reefcore_linux.zip
+ rm -r reefcore_linux.zip 
+   wget https://github.com/reefcoin-io/reefcore/releases/download/v0.9.0/reefcore_linux.zip
 unzip reefcore_linux.zip -d ~/reef/reefcore_linux
 rm -r reefcore_linux.zip
  
@@ -286,9 +286,9 @@ echo -e "${NC}-------------------------------------------------
 NOTE: To edit reef.conf, first stop the itisd daemon,
 then edit the reef.conf file and save it in nano: (Ctrl-X + Y + Enter),
 then start the reefd daemon back up:
-             to stop:   ${YELLOW}./reef-cli stop${NC}
+             to stop:   ${YELLOW}reef-cli stop${NC}
              to edit:   ${YELLOW}nano ~/.reefcore/reef.conf${NC}
-             to start:  ${YELLOW}./reefd${NC}
+             to start:  ${YELLOW}reefd${NC}
 ========================================================================
 To view Itis debug log showing all MN network activity in realtime:
              ${YELLOW}tail -f ~/.reefcore/debug.log${NC}
