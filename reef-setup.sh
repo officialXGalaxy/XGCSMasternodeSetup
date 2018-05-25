@@ -142,7 +142,7 @@ rm -r reefcore_linux.zip
  stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp reef/reefcore_linux/reef* /usr/bin/
+ sudo cp ~/reef/reefcore_linux/reef* /usr/bin/
  sudo chmod 755 -R ~/reef
  sudo chmod 755 /usr/bin/reef*
  
