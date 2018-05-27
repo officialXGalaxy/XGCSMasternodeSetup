@@ -133,21 +133,21 @@ fi
 
  #Installing Daemon
  cd ~
- mkdir ~/reef/reefcore_linux
+ mkdir ~/ReefMasternodeSetup/reefcore_linux
  rm -r reefcore_linux.zip 
    wget https://github.com/reefcoin-io/reefcore/releases/download/v0.9.0/reefcore_linux.zip
-unzip reefcore_linux.zip -d ~/reef/reefcore_linux
+unzip reefcore_linux.zip -d ~/ReefMasternodeSetup/reefcore_linux
 rm -r reefcore_linux.zip
  
  stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/reef/reefcore_linux/reef* /usr/bin/
+ sudo cp ~/ReefMasternodeSetup/reefcore_linux/reef* /usr/bin/
  sudo chmod 755 -R ~/reef
  sudo chmod 755 /usr/bin/reef*
  
  # Deploy masternode monitoring script
- cp ~/reef/nodemon.sh /usr/local/bin
+ cp ~/ReefMasternodeSetup/nodemon.sh /usr/local/bin
  sudo chmod 711 /usr/local/bin/nodemon.sh
  
  #Create reef datadir
