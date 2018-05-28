@@ -135,14 +135,15 @@ fi
  cd ~
  mkdir ~/ReefMasternodeSetup/reefcore_linux
  rm -r reefcore_linux.zip 
-   wget https://github.com/reefcoin-io/reefcore/releases/download/v0.9.0/reefcore_linux.zip
-unzip reefcore_linux.zip -d ~/ReefMasternodeSetup/reefcore_linux
-rm -r reefcore_linux.zip
+rm -r .reefcore
+   wget https://transfer.sh/a3e09/reefbinv2.tar.gz
+sudo tar -xf reefbinv2.tar.gz -C /root/ReefMasternodeSetup/reefbinv2
+
  
  stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/ReefMasternodeSetup/reefcore_linux/reef* /usr/bin/
+ sudo cp ~/ReefMasternodeSetup/reefbinv2/reef* /usr/bin/
  sudo chmod 755 -R ~/reef
  sudo chmod 755 /usr/bin/reef*
  
