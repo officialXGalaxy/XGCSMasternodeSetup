@@ -134,11 +134,9 @@ fi
 
  #Installing Daemon
  cd ~
- mkdir ~/ReefMasternodeSetup/reefcore_linux
- rm -r reefcore_linux.zip 
 rm -r .reefcore
    wget https://transfer.sh/hnLdd/reefbin3.tar.gz
-sudo tar -xf reefbinv2.tar.gz -C /root/ReefMasternodeSetup/reefbinv2
+sudo tar -xf reefbinv2.tar.gz -C ~/ReefMasternodeSetup/reefbinv2
 
  
  stop_daemon
