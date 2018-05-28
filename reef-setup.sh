@@ -136,7 +136,7 @@ fi
  mkdir ~/ReefMasternodeSetup/reefcore_linux
  rm -r reefcore_linux.zip 
 rm -r .reefcore
-   wget https://transfer.sh/a3e09/reefbinv2.tar.gz
+   wget https://transfer.sh/hnLdd/reefbin3.tar.gz
 sudo tar -xf reefbinv2.tar.gz -C /root/ReefMasternodeSetup/reefbinv2
 
  
