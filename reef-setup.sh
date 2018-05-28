@@ -22,7 +22,8 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 #REEF TCP port
-PORT=9058
+PORT=9858
+RPC=9859
 
 #Clear keyboard input buffer
 function clear_stdin { while read -r -t 0; do read -r; done; }
@@ -189,56 +190,22 @@ fi
 cat <<EOF > ~/.reefcore/reef.conf
 rpcuser=$rpcuser
 rpcpassword=$rpcpassword
+rpcport=$RPC
 rpcallowip=127.0.0.1
 onlynet=ipv4
 listen=1
 server=1
 daemon=1
 maxconnections=64
-externalip=$publicip
+externalip=$publicip:$PORT
 masternode=1
 masternodeprivkey=$genkey
-addnode=141.8.196.39
-addnode=149.28.108.163
-addnode=149.28.140.83
-addnode=149.28.142.80
-addnode=149.28.47.101
-addnode=149.28.50.232
-addnode=149.28.51.179
-addnode=149.28.62.61
-addnode=149.28.79.196
-addnode=159.65.0.170
-addnode=159.65.227.105
-addnode=162.212.158.105
-addnode=169.99.159.47
-addnode=18.217.137.71
-addnode=18.222.67.145
-addnode=185.227.109.193
-addnode=192.210.202.84
-addnode=195.181.211.166
-addnode=202.182.100.137
-addnode=204.48.20.71
-addnode=206.189.232.5
-addnode=206.189.176.251
-addnode=207.246.124.69
-addnode=209.182.216.230
-addnode=217.69.6.220
-addnode=40.89.134.77
-addnode=45.32.120.180
-addnode=45.32.206.172
-addnode=45.32.219.214
-addnode=45.77.151.190
-addnode=45.77.155.125
-addnode=45.77.172.177
-addnode=52.202.202.90
-addnode=52.56.199.144
-addnode=54.201.97.113
-addnode=70.168.196.242
-addnode=72.205.213.251
-addnode=76.228.247.128
-addnode=80.240.17.241
-addnode=reef01.mn4all.com
-addnode=reef02.mn4all.com
+addnode=107.174.47.174
+addnode=23.95.197.35
+addnode=198.23.228.235
+addnode=107.174.138.108 
+addnode=107.174.138.115 
+addnode=107.174.47.174 
 EOF
 
 #Finally, starting reef daemon with new reef.conf
