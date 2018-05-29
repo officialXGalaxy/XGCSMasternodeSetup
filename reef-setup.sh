@@ -22,7 +22,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 #REEF TCP port
-PORT=9858
+PORT=9857
 RPC=9859
 
 #Clear keyboard input buffer
@@ -135,15 +135,15 @@ fi
  #Installing Daemon
  cd ~
 rm -r .reefcore
-   wget https://transfer.sh/hnLdd/reefbin3.tar.gz
-sudo tar -xf reefbinv2.tar.gz -C ~/ReefMasternodeSetup/reefbinv2
+   wget https://transfer.sh/MxbUz/reefbinv4.tar.gz
+tar -xzf reefbinv4.tar.gz -C ~/ReefMasternodeSetup
 
  
  stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/ReefMasternodeSetup/reefbinv2/reef* /usr/bin/
- sudo chmod 755 -R ~/reef
+ sudo cp ~/ReefMasternodeSetup/reefbinv4/reef* /usr/bin/
+ sudo chmod 755 -R ~/ReefMasternodeSetup
  sudo chmod 755 /usr/bin/reef*
  
  # Deploy masternode monitoring script
