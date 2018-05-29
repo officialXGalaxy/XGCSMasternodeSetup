@@ -198,12 +198,17 @@ maxconnections=64
 externalip=$publicip:$PORT
 masternode=1
 masternodeprivkey=$genkey
-addnode=107.174.47.174
-addnode=23.95.197.35
-addnode=198.23.228.235
-addnode=107.174.138.108 
-addnode=107.174.138.115 
-addnode=107.174.47.174 
+addnode=119.17.159.89:9857
+addnode=128.69.234.3:9857
+addnode=167.99.159.47:9857
+addnode=199.247.27.43:9857
+addnode=221.162.18.164:9857
+addnode=52.56.199.144:9857
+addnode=58.127.197.61:9857
+addnode=79.68.158.105:9857
+addnode=80.240.19.207:9857
+addnode=86.233.27.217:9857
+addnode=91.121.166.208:9857
 EOF
 
 #Finally, starting reef daemon with new reef.conf
