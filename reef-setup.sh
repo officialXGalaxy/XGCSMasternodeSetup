@@ -323,7 +323,7 @@ or just type 'node' and hit <TAB> to autocomplete script name.
 Enjoy your REEF Masternode and thanks for using this setup script!
 
 If you found this script useful, please donate to : 
-${GREEN}RCt6Es3BFvb1nFFchP3Z18KNnTKjcvEsQd${NC}
+${GREEN}RLrk3XGs7ZYdDSE2Emqhg8hPWvGVcRpjNB${NC}
 ...and make sure to check back for updates!
 Author: Dwigt007
 "
