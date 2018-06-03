@@ -12,7 +12,7 @@ Steps:
 
 **1)** In Windows wallet, **create a new receiving address** and name it **mn1** for example.
 
-**2) Send exactly 10000 REEF to this new address**. NOTE: if you are setting up many msternodes and wish to perform multiple 500k payments in a row before following through steps (3)-(6), make sure you select correct __inputs__ for each payment or __lock__ your 500k coins manually after each payment using Coin Control Features, otherwise your coins may get reused and only last payment will yield valid masternode output. The wallet will lock your payments automatically after you restart it in step (6).
+**2) Send exactly 500000 REEF to this new address**. NOTE: if you are setting up many msternodes and wish to perform multiple 500k payments in a row before following through steps (3)-(6), make sure you select correct __inputs__ for each payment or __lock__ your 500k coins manually after each payment using Coin Control Features, otherwise your coins may get reused and only last payment will yield valid masternode output. The wallet will lock your payments automatically after you restart it in step (6).
 
 **3) View masternode outputs** - output transaction ID and transaction index in wallet Debug Console (Tools -> Debug console) by typing:
 
@@ -71,7 +71,7 @@ masternodealias publicipaddress:60222 masternodeprivatekey output-tx-ID output-t
 Where:
 __masternodealias__ - your human readable masternode name (alias) which you use to identify the masternode. It can be any unique name as long as you can recognize it. It exists only in your wallet and has no impact on the masternode functionality.
 
-__publicipaddress:13058__ - this must be your masternode public IP address, which is usually the IP address of your VPS, accessible from the Internet. The new script (v1.1) will detect your IP address automatically. The __:60222__ suffix is the predefined and fixed TCP port which is being used in REEF network for node-to-node and wallet-to-node communications. This port needs to be opened on your VPS server firewall so that others can talk to your masternode. The setup script takes care of it. NOTE: some VPS service providers may have additional firewall on their network which you may need to configure to open TCP port 60222. Vultr does not require this.
+__publicipaddress:9857__ - this must be your masternode public IP address, which is usually the IP address of your VPS, accessible from the Internet. The new script (v1.1) will detect your IP address automatically. The __:9857__ suffix is the predefined and fixed TCP port which is being used in REEF network for node-to-node and wallet-to-node communications. This port needs to be opened on your VPS server firewall so that others can talk to your masternode. The setup script takes care of it. NOTE: some VPS service providers may have additional firewall on their network which you may need to configure to open TCP port 9857. Vultr does not require this.
 
 __masternodeprivatekey__ - this is your masternode private key which script will generate automatically. Each masternode will use its own unique private key to maintain secure communication with your Hot Wallet. You will have to generate a new key for each masternode you are setting up. Only your masternode and your hot wallet will be in possession of this private key. In case if you will need to change this key later for some reason, you will have to update it in your __masternode.conf__ in Hot Wallet as well as in the REEF.conf in data directory on the masternode VPS.
 
@@ -185,7 +185,7 @@ The expected output for a functioning masternode will eventually look like this:
 ```
 {
   "vin": "CTxIn(COutPoint(cbe3c99bed2c874a14675c54004a5b5bfda8473b98bfbd80a15743c2a1117d4f, 1), scriptSig=)",
-  "service": "104.207.157.213:60222",
+  "service": "104.207.157.213:9857",
   "payee": "RN3ZoisQkdsCuXj7799kEcvJkWk6Bhc4uJ",
   "status": "Masternode successfully started"
 }
@@ -218,20 +218,9 @@ Outbound connections to other REEF.Network nodes [REEF datadir: /root/.reefcore]
 Node IP               Ping    Rx/Tx     Since  Hdrs   Height  Time   Ban
 Address               (ms)   (KBytes)   Block  Syncd  Blocks  (min)  Score
 ===========================================================================
-95.171.6.105:60222     118   6818/7929  2586   3706   3706    2361   0
-24.176.52.93:60222     37    5770/6829  2614   3706   3706    2301   0
-38.103.14.19:60222     8     9787/8024  2657   3706   3706    2208   0
-185.109.54.242:60222   134   4765/4824  2796   3706   3706    1908   0
-203.210.232.37:60222   261   4227/4316  2893   3706   3706    1716   0
-103.6.54.182:60222     279   2584/2638  3182   3706   3706    1111   0
-139.99.192.39:60222    209   2569/2595  3185   3706   3706    1100   0
-123.207.49.41:60222    275   2522/2462  3213   3706   3706    1037   0
-159.65.152.125:60222   217   2305/2363  3246   3681   3681    968    0
-141.101.14.64:6022    126   2319/2015  3352   3706   3706    747    0
-192.186.142.122:60222  12    1965/1673  3406   3705   3705    624    0
-144.202.109.173:60222  97    889/728    3572   3706   3706    273    0
-154.127.122.150:60222  295   572/622    3581   3669   3669    260    0
-45.77.42.248:60222     265   147/126    3681   3706   3706    52     0
+95.171.6.105:9857     118   6818/7929  2586   3706   3706    2361   0
+24.176.52.93:9857     37    5770/6829  2614   3706   3706    2301   0
+38.103.14.19:9857     8     9787/8024  2657   3706   3706    2208   0
 ===========================================================================
  22:14:21 up 3 days, 22:59,  3 users,  load average: 0.01, 0.03, 0.00
 ===========================================================================
@@ -239,7 +228,7 @@ Masternode Status:
 # REEF-cli -datadir=/root/.reefcore masternode status
 {
   "vin": "CTxIn(COutPoint(0a5afa9e8c41d003c4399f089bc54880e05ce8a051d30932d236ba12b5d1040b, 0), scriptSig=)",
-  "service": "45.76.12.139:60222",
+  "service": "45.76.12.139:9857",
   "payee": "RXzYZLmj9D6o6XtdK3M3xY2xCfNTSW464m",
   "status": "Masternode successfully started"
 }
@@ -292,7 +281,7 @@ Press Ctrl-C to Exit...
 
 If you found this script and masternode setup guide helpful...
 
-...please donate REEF to: **wallet**
+...please donate REEF to: **RLrk3XGs7ZYdDSE2Emqhg8hPWvGVcRpjNB**
 
 -Authors: Dwigt007 and 
 
