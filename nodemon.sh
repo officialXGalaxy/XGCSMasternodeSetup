@@ -1,5 +1,5 @@
 #!/bin/bash
-# nodemon 1.0 - Reef Masternode Monitoring 
+# reefmon 1.0 - Reef Masternode Monitoring 
 
 #Processing command line params
 if [ -z $1 ]; then dly=1; else dly=$1; fi   # Default refresh time is 1 sec
@@ -28,6 +28,6 @@ echo 'Sync Status: \n# reef-cli mnsync status' &&  reef-cli -datadir=$datadir mn
 echo '==========================================================================='
 echo 'Masternode Information: \n# reef-cli getinfo' && reef-cli -datadir=$datadir getinfo
 echo '==========================================================================='
-echo 'Usage: nodemon.sh [refresh delay] [datadir index]'
-echo 'Example: nodemon.sh 10 22 will run every 10 seconds and query reefd in /$USER/.reefcore22'
+echo 'Usage: reefmon.sh [refresh delay] [datadir index]'
+echo 'Example: reefmon.sh 10 22 will run every 10 seconds and query reefd in /$USER/.reefcore22'
 echo '\n\nPress Ctrl-C to Exit...'"
