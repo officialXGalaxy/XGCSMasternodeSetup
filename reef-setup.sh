@@ -204,32 +204,10 @@ maxconnections=200
 externalip=$publicip:$PORT
 masternode=1
 masternodeprivkey=$genkey
-addnode=119.17.159.89:9857
-addnode=128.69.234.3:9857
-addnode=199.247.27.43:9857
-addnode=221.162.18.164:9857
-addnode=52.56.199.144:9857
-addnode=58.127.197.61:9857
-addnode=77.121.103.110:9857
-addnode=79.68.158.105:9857
-addnode=80.240.19.207:9857
-addnode=86.233.27.217:9857
-addnode=91.121.166.208:9857
-addnode=91.121.166.208
-addnode=98.211.59.187
-addnode=62.194.126.71
-addnode=45.63.12.247
-addnode=119.17.159.89:9857
-addnode=128.69.234.3:9857
-addnode=167.99.159.47:9857
-addnode=199.247.27.43:9857
-addnode=221.162.18.164:9857
-addnode=52.56.199.144:9857
-addnode=58.127.197.61:9857
-addnode=79.68.158.105:9857
-addnode=80.240.19.207:9857
-addnode=86.233.27.217:9857
-addnode=91.121.166.208:9857
+addnode=107.173.16.11:9857 
+addnode=107.175.28.200:9857
+addnode=seednode.alttank.ca
+
 EOF
 
 #Finally, starting reef daemon with new reef.conf
