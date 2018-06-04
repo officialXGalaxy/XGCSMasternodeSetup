@@ -202,7 +202,7 @@ The expected output for a functioning masternode will eventually look like this:
 
 ```
 
-**Advanced masternode monitoring script: nodemon.sh**
+**Advanced masternode monitoring script: reefmon.sh**
 
 The main purpose of this simple script is to monitor **masternode status and peer connections** in real-time. It will display all current __outbound__ connections of your masternode with great amount of statistis which can be used for troubleshooting of sync issues.
 
@@ -267,8 +267,8 @@ Masternode Information:
   "errors": ""
 }
 ===========================================================================
-Usage: nodemon.sh [refresh delay] [datadir index]
-Example: nodemon.sh 10 22 will run every 10 seconds and query REEFd in /root/.REEF22
+Usage: reefmon.sh [refresh delay] [datadir index]
+Example: reefmon.sh 10 22 will run every 10 seconds and query REEFd in /root/.REEF22
 
 
 Press Ctrl-C to Exit...
