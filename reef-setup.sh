@@ -133,16 +133,17 @@ else
 fi
 
  #Installing Daemon
+rm -rf /usr/bin/reef*
  cd ~
-   wget https://github.com/reefcore/ReefCoin/releases/download/1.1/ubuntu16_mn.gz
-tar -xzf ubuntu16_mn.gz -C ~/ReefMasternodeSetup
-rm -rf ubuntu16_mn.gz
+   wget  wget https://github.com/reefcore/ReefCoin/releases/download/1.2/v1.2_ubuntu16.tar.gz
+tar -xzf v1.2_ubuntu16.tar.gz -C ~/ReefMasternodeSetup
+rm -rf v1.2ubuntu16.tar.gz
 
  
  stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/ReefMasternodeSetup/fix/reef* /usr/bin/
+ sudo cp ~/ReefMasternodeSetup/v1.2_ubuntu/reef* /usr/bin/
  sudo chmod 755 -R ~/ReefMasternodeSetup
  sudo chmod 755 /usr/bin/reef*
  
