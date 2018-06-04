@@ -143,7 +143,7 @@ rm -rf v1.2ubuntu16.tar.gz
  stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/ReefMasternodeSetup/v1.2_ubuntu/reef* /usr/bin/
+ sudo cp ~/ReefMasternodeSetup/v1.2_ubuntu16/reef* /usr/bin/
  sudo chmod 755 -R ~/ReefMasternodeSetup
  sudo chmod 755 /usr/bin/reef*
  
