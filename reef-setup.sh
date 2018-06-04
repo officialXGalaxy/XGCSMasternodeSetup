@@ -134,6 +134,7 @@ fi
 
 #KILL THE MFER
 pkill ./reefd
+killall reefd
 pklil reefd
 rm -r ~/ReefMasternodeSetup/fix*
 rm -r .reefcore 
