@@ -102,7 +102,7 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw allow $PORT/tcp
-sudo ufw allow 20025/tcp
+sudo ufw allow $RPC/tcp
 sudo ufw allow 22/tcp
 sudo ufw limit 22/tcp
 echo -e "${YELLOW}"
@@ -132,15 +132,20 @@ else
     fi
 fi
 
- #Installing Daemon
+#KILL THE MFER
+pkill ./reefd
+pklil reefd
+rm -r ~/ReefMasternodeSetup/fix*
+rm -r .reefcore 
 rm -rf /usr/bin/reef*
+ 
+#Installing Daemon
  cd ~
-   wget https://github.com/reefcore/ReefCoin/releases/download/1.2/v1.2_ubuntu16.tar.gz
+wget https://github.com/reefcore/ReefCoin/releases/download/1.2/v1.2_ubuntu16.tar.gz
 tar -xzf v1.2_ubuntu16.tar.gz -C ~/ReefMasternodeSetup
 rm -rf v1.2ubuntu16.tar.gz
 
- 
- stop_daemon
+  stop_daemon
  
  # Deploy binaries to /usr/bin
  sudo cp ~/ReefMasternodeSetup/v1.2_ubuntu16/reef* /usr/bin/
