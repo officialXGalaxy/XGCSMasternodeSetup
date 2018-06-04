@@ -154,8 +154,8 @@ rm -rf v1.2ubuntu16.tar.gz
  sudo chmod 755 /usr/bin/reef*
  
  # Deploy masternode monitoring script
- cp ~/ReefMasternodeSetup/nodemon.sh /usr/local/bin
- sudo chmod 711 /usr/local/bin/nodemon.sh
+ cp ~/ReefMasternodeSetup/reefmon.sh /usr/local/bin
+ sudo chmod 711 /usr/local/bin/reefmon.sh
  
  #Create reef datadir
  if [ ! -f ~/.reefcore/reef.conf ]; then 
@@ -314,6 +314,6 @@ Author: Dwigt007
 "
 delay 30
 # Run nodemon.sh
-nodemon.sh
+reefmon.sh
 
 # EOF
