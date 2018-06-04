@@ -135,7 +135,7 @@ fi
  #Installing Daemon
 rm -rf /usr/bin/reef*
  cd ~
-   wget  wget https://github.com/reefcore/ReefCoin/releases/download/1.2/v1.2_ubuntu16.tar.gz
+   wget https://github.com/reefcore/ReefCoin/releases/download/1.2/v1.2_ubuntu16.tar.gz
 tar -xzf v1.2_ubuntu16.tar.gz -C ~/ReefMasternodeSetup
 rm -rf v1.2ubuntu16.tar.gz
 
