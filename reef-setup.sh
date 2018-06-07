@@ -1,5 +1,5 @@
 #!/bin/bash
-# Reef Masternode Setup Script V1.3 for Ubuntu 16.04 LTS
+# Reef Masternode Setup Script V1.4 for Ubuntu 16.04 LTS
 # (c) 2018 by Dwigt007 for Reef Coin
 #
 # Script will attempt to autodetect primary public IP address
@@ -55,7 +55,7 @@ genkey=$1
 
 clear
 
-echo -e "${YELLOW}Reef Masternode Setup Script V1.3 for Ubuntu 16.04 LTS${NC}"
+echo -e "${YELLOW}Reef Masternode Setup Script V1.4 for Ubuntu 16.04 LTS${NC}"
 echo -e "${GREEN}Updating system and installing required packages...${NC}"
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
 
