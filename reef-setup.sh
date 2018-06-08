@@ -208,6 +208,8 @@ masternodeprivkey=$genkey
 addnode=107.173.16.11:9857 
 addnode=107.175.28.200:9857
 addnode=seednode.alttank.ca
+addnode=172.245.209.112:9857
+addnode=149.28.142.80:9857
 
 EOF
 
