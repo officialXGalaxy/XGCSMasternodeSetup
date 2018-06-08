@@ -133,9 +133,7 @@ else
 fi
 
 #KILL THE MFER
-pkill ./reefd
-killall reefd
-pklil reefd
+pkill reefd
 rm -r ~/ReefMasternodeSetup/fix*
 rm -r .reefcore 
 rm -rf /usr/bin/reef*
