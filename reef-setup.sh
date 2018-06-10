@@ -55,7 +55,36 @@ genkey=$1
 
 clear
 
-echo -e "${YELLOW}Reef Masternode Setup Script V1.4 for Ubuntu 16.04 LTS${NC}"
+echo -e "${YELLOW}Reef Masternode Setup Script V1.5 for Ubuntu 16.04 LTS${NC}"
+
+echo "Do you want me to generate a masternode private key for you?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) break;;
+        No ) read -e -p "Please enter your masternode private key :" genkey ;break;;
+    esac
+done
+
+clear
+
+#function detect_ubuntu
+
+ if [[ $(lsb_release -d) == *16.04* ]]; then
+
+   UBUNTU_VERSION=16
+
+ elif [[ $(lsb_release -d) == *14.04* ]]; then
+
+   UBUNTU_VERSION=14
+
+else
+
+   echo -e "${RED}You are not running Ubuntu 14.04 or 16.04 Installation is cancelled.${NC}"
+
+   exit 1
+
+fi
+
 echo -e "${GREEN}Updating system and installing required packages...${NC}"
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
 
