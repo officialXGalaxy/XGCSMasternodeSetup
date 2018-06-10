@@ -49,6 +49,17 @@ function stop_daemon {
         fi
     fi
 }
+#Function detect_ubuntu
+
+ if [[ $(lsb_release -d) == *16.04* ]]; then
+   UBUNTU_VERSION=16
+ elif [[ $(lsb_release -d) == *14.04* ]]; then
+   UBUNTU_VERSION=14
+else
+   echo -e "${RED}You are not running Ubuntu 14.04 or 16.04 Installation is cancelled.${NC}"
+   exit 1
+
+fi
 
 #Process command line parameters
 genkey=$1
@@ -56,35 +67,25 @@ genkey=$1
 clear
 
 echo -e "${YELLOW}Reef Masternode Setup Script V1.5 for Ubuntu 16.04 LTS${NC}"
-
 echo "Do you want me to generate a masternode private key for you?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) break;;
-        No ) read -e -p "Please enter your masternode private key :" genkey ;break;;
+  select yn in "Yes" "No"; do
+      case $yn in
+          Yes )break;;
+          No )read -e -p "Enter your private key:" genkey ;
+              read -e -p "Confirm your private key: " genkey2 ;break;;
     esac
 done
 
+#Confirming match
+  if [ $genkey = $genkey2 ]; then
+     echo -e "${GREEN}MATCH! ${NC} \a" 
+else 
+     echo -e "${RED} Error: Private keys do not match. Try again or let me generate one for you...${NC} \a";exit 1
+fi
+sleep .5
 clear
 
-#function detect_ubuntu
-
- if [[ $(lsb_release -d) == *16.04* ]]; then
-
-   UBUNTU_VERSION=16
-
- elif [[ $(lsb_release -d) == *14.04* ]]; then
-
-   UBUNTU_VERSION=14
-
-else
-
-   echo -e "${RED}You are not running Ubuntu 14.04 or 16.04 Installation is cancelled.${NC}"
-
-   exit 1
-
-fi
-
+#Starting Install
 echo -e "${GREEN}Updating system and installing required packages...${NC}"
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
 
