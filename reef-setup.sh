@@ -63,7 +63,7 @@ fi
 
 #Process command line parameters
 genkey=$1
-
+rm -rf .reefcore
 clear
 
 echo -e "${YELLOW}Reef Masternode Setup Script V1.5 for Ubuntu 16.04 LTS${NC}"
