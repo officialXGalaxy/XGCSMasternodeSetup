@@ -85,10 +85,6 @@ fi
 sleep .5
 clear
 
-#Starting Install
-echo -e "${GREEN}Updating system and installing required packages...${NC}"
-sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
-
 # Determine primary public IP address
 dpkg -s dnsutils 2>/dev/null >/dev/null || sudo apt-get -y install dnsutils
 publicip=$(dig +short myip.opendns.com @resolver1.opendns.com)
@@ -105,6 +101,12 @@ else
     fi
 fi
 
+echo -e "Do you want to install all needed dependencies (If you dont know what this is, press yes!)? [y/n]"
+read DOSETUP
+
+if [[ $DOSETUP =~ "y" ]] ; then
+echo -e "${GREEN}Updating system and installing required packages...${NC}"
+sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
 # update packages and upgrade Ubuntu
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
@@ -120,14 +122,13 @@ sudo apt-get -y update
 sudo apt-get -y install libdb4.8-dev libdb4.8++-dev
 sudo apt-get install unzip
 sudo apt-get -y install libminiupnpc-dev
-
 sudo apt-get -y install fail2ban
 sudo service fail2ban restart
 sudo apt-get install -y unzip libzmq3-dev build-essential libssl-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libboost-system1.58.0 libboost1.58-all-dev libdb4.8++ libdb4.8 libdb4.8-dev libdb4.8++-dev libevent-pthreads-2.0-5
-
+fi
+#allways install
 sudo apt-get install ufw -y
 sudo apt-get update -y
-
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow ssh
