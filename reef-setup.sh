@@ -179,8 +179,7 @@ rm -rf reef_1.2.1_linux.tar.gz
  # Deploy binaries to /usr/bin
  sudo cp ~/ReefMasternodeSetup/reef_1.2.1_linux/reef* /usr/bin/
  sudo chmod 755 -R ~/ReefMasternodeSetup
- sudo chmod 755 /usr/bin/reef*
- 
+ sudo chmod 755 /usr/bin/reef* 
  # Deploy masternode monitoring script
  cp ~/ReefMasternodeSetup/reefmon.sh /usr/local/bin
  sudo chmod 711 /usr/local/bin/reefmon.sh
@@ -203,7 +202,7 @@ EOF
 
     #Starting daemon first time just to generate masternode private key
     reefd -daemon
-    delay 30
+    delay 45
 
     #Generate masternode private key
     echo -e "${YELLOW}Generating masternode private key...${NC}"
