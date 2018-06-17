@@ -70,9 +70,9 @@ echo -e "${YELLOW}Reef Masternode Setup Script V1.5 for Ubuntu 16.04 LTS${NC}"
 echo "Do you want me to generate a masternode private key for you?[y/n]"
 read DOSETUP
 
-if [[ $DOSETUP =~ "y" ]] ; then
-          read -e -p "Enter your private key:" genkey,
-              read -e -p "Confirm your private key: " genkey2,
+if [[ $DOSETUP =~ "n" ]] ; then
+          read -e -p "Enter your private key:" genkey;
+              read -e -p "Confirm your private key: " genkey2;
     fi
 
 #Confirming match
