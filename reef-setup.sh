@@ -67,14 +67,13 @@ rm -rf .reefcore
 clear
 
 echo -e "${YELLOW}Reef Masternode Setup Script V1.5 for Ubuntu 16.04 LTS${NC}"
-echo "Do you want me to generate a masternode private key for you?"
-  select yn in "Yes" "No"; do
-      case $yn in
-          Yes )break;;
-          No )read -e -p "Enter your private key:" genkey ;
-              read -e -p "Confirm your private key: " genkey2 ;break;;
-    esac
-done
+echo "Do you want me to generate a masternode private key for you?[y/n]"
+read DOSETUP
+
+if [[ $DOSETUP =~ "y" ]] ; then
+          read -e -p "Enter your private key:" genkey,
+              read -e -p "Confirm your private key: " genkey2,
+    fi
 
 #Confirming match
   if [ $genkey = $genkey2 ]; then
@@ -100,11 +99,11 @@ else
         exit 1
     fi
 fi
-
+clear
 echo -e "Do you want to install all needed dependencies (If you dont know what this is, press yes!)? [y/n]"
-read DOSETUP
+read DOSETUP2
 
-if [[ $DOSETUP =~ "y" ]] ; then
+if [[ $DOSETUP2 =~ "y" ]] ; then
 echo -e "${GREEN}Updating system and installing required packages...${NC}"
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
 # update packages and upgrade Ubuntu
