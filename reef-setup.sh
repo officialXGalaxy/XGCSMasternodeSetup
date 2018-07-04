@@ -6,13 +6,7 @@
 # and generate masternode private key unless specified in command line
 #
 # Usage:
-# bash reef-setup.sh [Masternode_Private_Key]
-#
-# Example 1: Existing genkey created earlier is supplied
-# bash reef-setup.sh 27dSmwq9CabKjo2L3UD1HvgBP3ygbn8HdNmFiGFoVbN1STcsypy
-#
-# Example 2: Script will generate a new genkey automatically
-# bash reef-setup.sh
+# bash reef-setup.sh 
 #
 
 #Color codes
@@ -53,10 +47,8 @@ function stop_daemon {
 
  if [[ $(lsb_release -d) == *16.04* ]]; then
    UBUNTU_VERSION=16
- elif [[ $(lsb_release -d) == *14.04* ]]; then
-   UBUNTU_VERSION=14
 else
-   echo -e "${RED}You are not running Ubuntu 14.04 or 16.04 Installation is cancelled.${NC}"
+   echo -e "${RED}You are not running Ubuntu 16.04, Installation is cancelled.${NC}"
    exit 1
 
 fi
@@ -99,14 +91,14 @@ else
         exit 1
     fi
 fi
-clear
-echo -e "Do you want to install all needed dependencies (If you dont know what this is, press yes!)? [y/n]"
-read DOSETUP2
+#Check Deps
+if [ -d "/var/lib/fail2ban/" ]; 
+then
+    echo -e "${GREEN}Dependencies already installed...${NC}"
+else
+    echo -e "${GREEN}Updating system and installing required packages...${NC}"
 
-if [[ $DOSETUP2 =~ "y" ]] ; then
-echo -e "${GREEN}Updating system and installing required packages...${NC}"
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
-# update packages and upgrade Ubuntu
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 sudo apt-get -y autoremove
@@ -114,7 +106,7 @@ sudo apt-get -y install wget nano htop jq
 sudo apt-get -y install libzmq3-dev
 sudo apt-get -y install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
 sudo apt-get -y install libevent-dev
-sudo apt-get instal zip unzip
+sudo apt-get instal unzip
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:bitcoin/bitcoin -y
 sudo apt-get -y update
@@ -123,21 +115,45 @@ sudo apt-get install unzip
 sudo apt-get -y install libminiupnpc-dev
 sudo apt-get -y install fail2ban
 sudo service fail2ban restart
+sudo apt-get install libdb5.3++-dev libdb++-dev libdb5.3-dev libdb-dev && ldconfig
 sudo apt-get install -y unzip libzmq3-dev build-essential libssl-dev libboost-all-dev libqrencode-dev libminiupnpc-dev libboost-system1.58.0 libboost1.58-all-dev libdb4.8++ libdb4.8 libdb4.8-dev libdb4.8++-dev libevent-pthreads-2.0-5
-fi
-#allways install
+   fi
+
+#Network Settings
+echo -e "${GREEN}Installing Network Settings...${NC}"
+{
 sudo apt-get install ufw -y
+} &> /dev/null
+echo -ne '[##                 ]  (10%)\r'
+{
 sudo apt-get update -y
+} &> /dev/null
+echo -ne '[######             ] (30%)\r'
+{
 sudo ufw default deny incoming
+} &> /dev/null
+echo -ne '[#########          ] (50%)\r'
+{
 sudo ufw default allow outgoing
 sudo ufw allow ssh
+} &> /dev/null
+echo -ne '[###########        ] (60%)\r'
+{
 sudo ufw allow $PORT/tcp
 sudo ufw allow $RPC/tcp
+} &> /dev/null
+echo -ne '[###############    ] (80%)\r'
+{
 sudo ufw allow 22/tcp
 sudo ufw limit 22/tcp
+} &> /dev/null
+echo -ne '[#################  ] (90%)\r'
+{
 echo -e "${YELLOW}"
 sudo ufw --force enable
 echo -e "${NC}"
+} &> /dev/null
+echo -ne '[###################] (100%)\n'
 
 #Generating Random Password for reefd JSON RPC
 rpcuser=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
@@ -202,7 +218,16 @@ EOF
 
     #Starting daemon first time just to generate masternode private key
     reefd -daemon
-    delay 45
+echo -ne '[##                 ] (15%)\r'
+sleep 6
+echo -ne '[######             ] (30%)\r'
+sleep 6
+echo -ne '[########           ] (45%)\r'
+sleep 6
+echo -ne '[##############     ] (72%)\r'
+sleep 10
+echo -ne '[###################] (100%)\r'
+echo -ne '\n'
 
     #Generate masternode private key
     echo -e "${YELLOW}Generating masternode private key...${NC}"
@@ -215,7 +240,6 @@ EOF
     
     #Stopping daemon to create reef.conf
     stop_daemon
-    delay 30
 fi
 
 # Create reef.conf
