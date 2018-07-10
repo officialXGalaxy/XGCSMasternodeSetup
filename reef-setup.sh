@@ -180,7 +180,6 @@ fi
 
 #KILL THE MFER
 pkill reefd
-rm -r ~/ReefMasternodeSetup/fix*
 rm -r .reefcore 
 rm -rf /usr/bin/reef*
  
@@ -199,6 +198,9 @@ rm -rf reef_1.2.1_linux.tar.gz
  # Deploy masternode monitoring script
  cp ~/ReefMasternodeSetup/reefmon.sh /usr/local/bin
  sudo chmod 711 /usr/local/bin/reefmon.sh
+ # Deploy restart script 
+ cp ~/ReefMasternodeSetup/reef-restart.sh /usr/local/bin
+ sudo chmod 711 /usr/local/bin/reef-restart.sh
  
  #Create reef datadir
  if [ ! -f ~/.reefcore/reef.conf ]; then 
