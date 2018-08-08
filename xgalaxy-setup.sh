@@ -1,12 +1,12 @@
 #!/bin/bash
-# Reef Masternode Setup Script V1.4 for Ubuntu 16.04 LTS
-# (c) 2018 by Dwigt007 for Reef Coin
+# XGalaxy Masternode Setup Script V1.4 for Ubuntu 16.04 LTS
+# (c) 2018 by npq7721 for XGalaxy Coin
 #
 # Script will attempt to autodetect primary public IP address
 # and generate masternode private key unless specified in command line
 #
 # Usage:
-# bash reef-setup.sh 
+# bash xgalaxy-setup.sh 
 #
 
 #Color codes
@@ -15,9 +15,9 @@ GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-#REEF TCP port
-PORT=9857
-RPC=9859
+#XGCS TCP port
+PORT=23058
+RPC=23057
 
 #Clear keyboard input buffer
 function clear_stdin { while read -r -t 0; do read -r; done; }
@@ -27,17 +27,17 @@ function delay { echo -e "${GREEN}Sleep for $1 seconds...${NC}"; sleep "$1"; }
 
 #Stop daemon if it's already running
 function stop_daemon {
-    if pgrep -x 'reefd' > /dev/null; then
-        echo -e "${YELLOW}Attempting to stop reefd${NC}"
-        reef-cli stop
+    if pgrep -x 'xgalaxyd' > /dev/null; then
+        echo -e "${YELLOW}Attempting to stop xgalaxyd${NC}"
+        xgalaxy-cli stop
         delay 30
-        if pgrep -x 'reef' > /dev/null; then
-            echo -e "${RED}reefd daemon is still running!${NC} \a"
+        if pgrep -x 'xgalaxy' > /dev/null; then
+            echo -e "${RED}xgalaxyd daemon is still running!${NC} \a"
             echo -e "${RED}Attempting to kill...${NC}"
-            pkill reefd
+            pkill xgalaxyd
             delay 30
-            if pgrep -x 'reefd' > /dev/null; then
-                echo -e "${RED}Can't stop reefd! Reboot and try again...${NC} \a"
+            if pgrep -x 'xgalaxyd' > /dev/null; then
+                echo -e "${RED}Can't stop xgalaxyd! Reboot and try again...${NC} \a"
                 exit 2
             fi
         fi
@@ -55,10 +55,10 @@ fi
 
 #Process command line parameters
 genkey=$1
-rm -rf .reefcore
+rm -rf .xgalaxycore
 clear
 
-echo -e "${YELLOW}Reef Masternode Setup Script V1.5 for Ubuntu 16.04 LTS${NC}"
+echo -e "${YELLOW}XGalaxy Masternode Setup Script V1.5 for Ubuntu 16.04 LTS${NC}"
 echo "Do you want me to generate a masternode private key for you?[y/n]"
 read DOSETUP
 
@@ -155,7 +155,7 @@ echo -e "${NC}"
 } &> /dev/null
 echo -ne '[###################] (100%)\n'
 
-#Generating Random Password for reefd JSON RPC
+#Generating Random Password for xgalaxyd JSON RPC
 rpcuser=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
@@ -179,47 +179,47 @@ else
 fi
 
 #KILL THE MFER
-pkill reefd
-rm -r .reefcore 
-rm -rf /usr/bin/reef*
+pkill xgalaxyd
+rm -r .xgalaxycore 
+rm -rf /usr/bin/xgalaxy*
  
 #Installing Daemon
  cd ~
-wget https://github.com/reefcore/ReefCoin/releases/download/1.2.1/reef_1.2.1_linux.tar.gz
-tar -xzf reef_1.2.1_linux.tar.gz -C ~/ReefMasternodeSetup
-rm -rf reef_1.2.1_linux.tar.gz
+wget https://github.com/npq7721/ProjectsReleases/releases/download/XGalaxy-Beta/XGalaxy-beta-linux.tar.gz
+tar -xzf XGalaxy-beta-linux.tar.gz -C ~/XGalaxyMasternodeSetup
+rm -rf XGalaxy-beta-linux.tar.gz
 
   stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/ReefMasternodeSetup/reef_1.2.1_linux/reef* /usr/bin/
- sudo chmod 755 -R ~/ReefMasternodeSetup
- sudo chmod 755 /usr/bin/reef* 
+ sudo cp ~/XGalaxyMasternodeSetup/XGalaxy-beta-linux/xgalaxy* /usr/bin/
+ sudo chmod 755 -R ~/XGalaxyMasternodeSetup
+ sudo chmod 755 /usr/bin/xgalaxy* 
  # Deploy masternode monitoring script
- cp ~/ReefMasternodeSetup/reefmon.sh /usr/local/bin
- sudo chmod 711 /usr/local/bin/reefmon.sh
+ cp ~/XGalaxyMasternodeSetup/xgalaxymon.sh /usr/local/bin
+ sudo chmod 711 /usr/local/bin/xgalaxymon.sh
  # Deploy restart script 
- cp ~/ReefMasternodeSetup/reef-restart.sh /usr/local/bin
- sudo chmod 711 /usr/local/bin/reef-restart.sh
+ cp ~/XGalaxyMasternodeSetup/xgalaxy-restart.sh /usr/local/bin
+ sudo chmod 711 /usr/local/bin/xgalaxy-restart.sh
  
- #Create reef datadir
- if [ ! -f ~/.reefcore/reef.conf ]; then 
- 	sudo mkdir ~/.reefcore
+ #Create xgalaxy datadir
+ if [ ! -f ~/.xgalaxycore/xgalaxy.conf ]; then 
+ 	sudo mkdir ~/.xgalaxycore
  fi
 
-echo -e "${YELLOW}Creating reef.conf...${NC}"
+echo -e "${YELLOW}Creating xgalaxy.conf...${NC}"
 
 # If genkey was not supplied in command line, we will generate private key on the fly
 if [ -z $genkey ]; then
-    cat <<EOF > ~/.reefcore/reef.conf
+    cat <<EOF > ~/.xgalaxycore/xgalaxy.conf
 rpcuser=$rpcuser
 rpcpassword=$rpcpassword
 EOF
 
-    sudo chmod 755 -R ~/.reefcore/reef.conf
+    sudo chmod 755 -R ~/.xgalaxycore/xgalaxy.conf
 
     #Starting daemon first time just to generate masternode private key
-    reefd -daemon
+    xgalaxyd -daemon
 echo -ne '[##                 ] (15%)\r'
 sleep 6
 echo -ne '[######             ] (30%)\r'
@@ -233,19 +233,19 @@ echo -ne '\n'
 
     #Generate masternode private key
     echo -e "${YELLOW}Generating masternode private key...${NC}"
-    genkey=$(reef-cli masternode genkey)
+    genkey=$(xgalaxy-cli masternode genkey)
     if [ -z "$genkey" ]; then
         echo -e "${RED}ERROR: Can not generate masternode private key.${NC} \a"
         echo -e "${RED}ERROR: Reboot VPS and try again or supply existing genkey as a parameter.${NC}"
         exit 1
     fi
     
-    #Stopping daemon to create reef.conf
+    #Stopping daemon to create xgalaxy.conf
     stop_daemon
 fi
 
-# Create reef.conf
-cat <<EOF > ~/.reefcore/reef.conf
+# Create xgalaxy.conf
+cat <<EOF > ~/.xgalaxycore/xgalaxy.conf
 rpcuser=$rpcuser
 rpcpassword=$rpcpassword
 rpcport=$RPC
@@ -258,20 +258,15 @@ maxconnections=200
 externalip=$publicip:$PORT
 masternode=1
 masternodeprivkey=$genkey
-addnode=107.173.16.11:9857 
-addnode=107.175.28.200:9857
-addnode=seednode.alttank.ca
-addnode=172.245.209.112:9857
-addnode=149.28.142.80:9857
 
 EOF
 
-#Finally, starting reef daemon with new reef.conf
-reefd --daemon
+#Finally, starting xgalaxy daemon with new xgalaxy.conf
+xgalaxyd --daemon
 delay 5
 
-#Setting auto start cron job for reefd
-cronjob="@reboot sleep 30 && reefd"
+#Setting auto start cron job for xgalaxyd
+cronjob="@reboot sleep 30 && xgalaxyd"
 crontab -l > tempcron
 if ! grep -q "$cronjob" tempcron; then
     echo -e "${GREEN}Configuring crontab job...${NC}"
@@ -286,7 +281,7 @@ ${YELLOW}Masternode setup is complete!${NC}
 Masternode was installed with VPS IP Address: ${YELLOW}$publicip${NC}
 Masternode Private Key: ${YELLOW}$genkey${NC}
 Now you can add the following string to the masternode.conf file
-for your Hot Wallet (the wallet with your REEFCOIN collateral funds):
+for your Hot Wallet (the wallet with your XGCSCOIN collateral funds):
 ======================================================================== \a"
 echo -e "${YELLOW}mn1 $publicip:$PORT $genkey TxId TxIdx${NC}"
 echo -e "========================================================================
@@ -324,7 +319,7 @@ Once completed step (2), return to this VPS console and wait for the
 Masternode Status to change to: 'Masternode successfully started'.
 This will indicate that your masternode is fully functional and
 you can celebrate this achievement!
-Currently your masternode is syncing with the REEF network...
+Currently your masternode is syncing with the XGCS network...
 The following screen will display in real-time
 the list of peer connections, the status of your masternode,
 node synchronization status and additional network and node stats.
@@ -336,21 +331,21 @@ echo -e "
 ${GREEN}...scroll up to see previous screens...${NC}
 Here are some useful commands and tools for masternode troubleshooting:
 ========================================================================
-To view masternode configuration produced by this script in reef.conf:
-${YELLOW}cat ~/.reefcore/reef.conf${NC}
-Here is your reef.conf generated by this script:
+To view masternode configuration produced by this script in xgalaxy.conf:
+${YELLOW}cat ~/.xgalaxycore/xgalaxy.conf${NC}
+Here is your xgalaxy.conf generated by this script:
 -------------------------------------------------${YELLOW}"
-cat ~/.reefcore/reef.conf
+cat ~/.xgalaxycore/xgalaxy.conf
 echo -e "${NC}-------------------------------------------------
-NOTE: To edit reef.conf, first stop the reefd daemon,
-then edit the reef.conf file and save it in nano: (Ctrl-X + Y + Enter),
-then start the reefd daemon back up:
-             to stop:   ${YELLOW}reef-cli stop${NC}
-             to edit:   ${YELLOW}nano ~/.reefcore/reef.conf${NC}
-             to start:  ${YELLOW}reefd${NC}
+NOTE: To edit xgalaxy.conf, first stop the xgalaxyd daemon,
+then edit the xgalaxy.conf file and save it in nano: (Ctrl-X + Y + Enter),
+then start the xgalaxyd daemon back up:
+             to stop:   ${YELLOW}xgalaxy-cli stop${NC}
+             to edit:   ${YELLOW}nano ~/.xgalaxycore/xgalaxy.conf${NC}
+             to start:  ${YELLOW}xgalaxyd${NC}
 ========================================================================
 To view Itis debug log showing all MN network activity in realtime:
-             ${YELLOW}tail -f ~/.reefcore/debug.log${NC}
+             ${YELLOW}tail -f ~/.xgalaxycore/debug.log${NC}
 ========================================================================
 To monitor system resource utilization and running processes:
                    ${YELLOW}htop${NC}
@@ -360,15 +355,15 @@ sync status etc. in real-time, run the nodemon.sh script:
                  ${YELLOW}nodemon.sh${NC}
 or just type 'node' and hit <TAB> to autocomplete script name.
 ========================================================================
-Enjoy your REEF Masternode and thanks for using this setup script!
+Enjoy your XGCS Masternode and thanks for using this setup script!
 
 If you found this script useful, please donate to : 
-${GREEN}RLrk3XGs7ZYdDSE2Emqhg8hPWvGVcRpjNB${NC}
+${GREEN}XRU3ZieGKjLiKMhgXtsndRwmLgDoEWqUh5${NC}
 ...and make sure to check back for updates!
-Author: Dwigt007
+Author: npq7721
 "
 delay 30
 # Run nodemon.sh
-reefmon.sh
+xgalaxymon.sh
 
 # EOF
