@@ -185,7 +185,7 @@ rm -rf /usr/bin/xgalaxy*
  
 #Installing Daemon
  cd ~
-wget https://github.com/npq7721/ProjectsReleases/releases/download/XGalaxy-Beta/XGalaxy-beta-2-linux.tar.gz
+wget https://github.com/npq7721/ProjectsReleases/releases/download/XGalaxy-Beta-2/XGalaxy-beta-2-linux.tar.gz
 tar -xzf XGalaxy-beta-2-linux.tar.gz -C ~/XGalaxyMasternodeSetup
 rm -rf XGalaxy-beta-2-linux.tar.gz
 
