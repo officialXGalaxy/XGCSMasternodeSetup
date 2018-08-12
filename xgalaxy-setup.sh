@@ -185,14 +185,14 @@ rm -rf /usr/bin/xgalaxy*
  
 #Installing Daemon
  cd ~
-wget https://github.com/npq7721/ProjectsReleases/releases/download/XGalaxy-Beta/XGalaxy-beta-linux.tar.gz
-tar -xzf XGalaxy-beta-linux.tar.gz -C ~/XGalaxyMasternodeSetup
-rm -rf XGalaxy-beta-linux.tar.gz
+wget https://github.com/npq7721/ProjectsReleases/releases/download/XGalaxy-Beta/XGalaxy-beta-2-linux.tar.gz
+tar -xzf XGalaxy-beta-2-linux.tar.gz -C ~/XGalaxyMasternodeSetup
+rm -rf XGalaxy-beta-2-linux.tar.gz
 
   stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/XGalaxyMasternodeSetup/XGalaxy-beta-linux/xgalaxy* /usr/bin/
+ sudo cp ~/XGalaxyMasternodeSetup/XGalaxy-beta-2-linux/xgalaxy* /usr/bin/
  sudo chmod 755 -R ~/XGalaxyMasternodeSetup
  sudo chmod 755 /usr/bin/xgalaxy* 
  # Deploy masternode monitoring script
