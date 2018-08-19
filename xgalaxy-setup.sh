@@ -185,14 +185,14 @@ rm -rf /usr/bin/xgalaxy*
  
 #Installing Daemon
  cd ~
-wget https://github.com/npq7721/ProjectsReleases/releases/download/XGalaxy-Beta-3/XGalaxy-beta-3-linux.tar.gz
-tar -xzf XGalaxy-beta-3-linux.tar.gz -C ~/XGalaxyMasternodeSetup
-rm -rf XGalaxy-beta-3-linux.tar.gz
+wget https://github.com/npq7721/XGalaxy2/releases/download/1.0/XGalaxy-1.0-ubuntu16.tar.gz
+tar -xzf XGalaxy-1.0-ubuntu16.tar.gz -C ~/XGalaxyMasternodeSetup
+rm -rf XGalaxy-1.0-ubuntu16.tar.gz
 
   stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/XGalaxyMasternodeSetup/XGalaxy-beta-3-linux/xgalaxy* /usr/bin/
+ sudo cp ~/XGalaxyMasternodeSetup/XGalaxy-1.0-ubuntu16/xgalaxy* /usr/bin/
  sudo chmod 755 -R ~/XGalaxyMasternodeSetup
  sudo chmod 755 /usr/bin/xgalaxy* 
  # Deploy masternode monitoring script
@@ -360,7 +360,8 @@ Enjoy your XGCS Masternode and thanks for using this setup script!
 If you found this script useful, please donate to : 
 ${GREEN}XRU3ZieGKjLiKMhgXtsndRwmLgDoEWqUh5${NC}
 ...and make sure to check back for updates!
-Author: npq7721
+Original Author: Dwigt
+Author: npq7721 
 "
 delay 30
 # Run nodemon.sh
