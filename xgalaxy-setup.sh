@@ -185,7 +185,7 @@ rm -rf /usr/bin/xgalaxy*
  
 #Installing Daemon
  cd ~
-wget https://github.com/npq7721/XGalaxy2/releases/download/1.0/XGalaxy-1.0-ubuntu16.tar.gz
+wget https://github.com/officialXGalaxy/XGalaxy/releases/download/1.0.0/XGalaxy-1.0-ubuntu16.tar.gz
 tar -xzf XGalaxy-1.0-ubuntu16.tar.gz -C ~/XGalaxyMasternodeSetup
 rm -rf XGalaxy-1.0-ubuntu16.tar.gz
 
