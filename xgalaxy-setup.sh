@@ -185,14 +185,14 @@ rm -rf /usr/bin/xgalaxy*
  
 #Installing Daemon
  cd ~
-wget https://github.com/officialXGalaxy/XGalaxy/releases/download/1.0.0/XGalaxy-1.0-ubuntu16.tar.gz
-tar -xzf XGalaxy-1.0-ubuntu16.tar.gz -C ~/XGalaxyMasternodeSetup
-rm -rf XGalaxy-1.0-ubuntu16.tar.gz
+wget https://github.com/officialXGalaxy/XGalaxy/releases/download/1.0.1/xGalaxy_1.0.1_ubuntu16.tar.gz
+tar -xzf xGalaxy_1.0.1_ubuntu16.tar.gz -C ~/XGalaxyMasternodeSetup
+rm -rf xGalaxy_1.0.1_ubuntu16.tar.gz
 
   stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/XGalaxyMasternodeSetup/XGalaxy-1.0-ubuntu16/xgalaxy* /usr/bin/
+ sudo cp ~/XGalaxyMasternodeSetup/xGalaxy_1.0.1_ubuntu16/xgalaxy* /usr/bin/
  sudo chmod 755 -R ~/XGalaxyMasternodeSetup
  sudo chmod 755 /usr/bin/xgalaxy* 
  # Deploy masternode monitoring script
