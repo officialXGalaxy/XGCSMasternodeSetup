@@ -35,7 +35,7 @@ git clone https://github.com/officialXGalaxy/XGCSMasternodeSetup.git
 
 __NOTE:__ in case if you will need to re-download this setup script or binaries from github repo, use the following git command:
 ```bash
-cd ~/XGalaxyMasternodeSetup
+cd ~/XGCSMasternodeSetup
 git reset --hard
 git pull
 ```
@@ -43,14 +43,14 @@ git pull
 **5) Run the install script** which will install and configure your masternode with all necessary options.
 
 ```bash
-cd ~/XGalaxyMasternodeSetup
+cd ~/XGCSMasternodeSetup
 bash xgalaxy-setup.sh
 ```
 
-**6) Run the update script** only run below command if this is an binary update not a fresh install
+**6) Run the update script** only run below command if this is an binary update not a fresh install. u do not need to do any anything else if u run update
 
 ```bash
-cd ~/XGalaxyMasternodeSetup
+cd ~/XGCSMasternodeSetup
 bash update.sh
 ```
 
