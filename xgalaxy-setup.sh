@@ -186,20 +186,20 @@ rm -rf /usr/bin/xgalaxy*
 #Installing Daemon
  cd ~
 wget https://github.com/officialXGalaxy/XGalaxy/releases/download/1.0.1/xGalaxy_1.0.1_ubuntu16.tar.gz
-tar -xzf xGalaxy_1.0.1_ubuntu16.tar.gz -C ~/XGalaxyMasternodeSetup
+tar -xzf xGalaxy_1.0.1_ubuntu16.tar.gz -C ~/XGCSMasternodeSetup
 rm -rf xGalaxy_1.0.1_ubuntu16.tar.gz
 
   stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/XGalaxyMasternodeSetup/xGalaxy_1.0.1_ubuntu16/xgalaxy* /usr/bin/
- sudo chmod 755 -R ~/XGalaxyMasternodeSetup
+ sudo cp ~/XGCSMasternodeSetup/xGalaxy_1.0.1_ubuntu16/xgalaxy* /usr/bin/
+ sudo chmod 755 -R ~/XGCSMasternodeSetup
  sudo chmod 755 /usr/bin/xgalaxy* 
  # Deploy masternode monitoring script
- cp ~/XGalaxyMasternodeSetup/xgalaxymon.sh /usr/local/bin
+ cp ~/XGCSMasternodeSetup/xgalaxymon.sh /usr/local/bin
  sudo chmod 711 /usr/local/bin/xgalaxymon.sh
  # Deploy restart script 
- cp ~/XGalaxyMasternodeSetup/xgalaxy-restart.sh /usr/local/bin
+ cp ~/XGCSMasternodeSetup/xgalaxy-restart.sh /usr/local/bin
  sudo chmod 711 /usr/local/bin/xgalaxy-restart.sh
  
  #Create xgalaxy datadir
