@@ -30,7 +30,7 @@ To download (clone) the script and binaries to your VPS, use the following comma
 
 ```bash
 cd ~
-git clone https://github.com/npq7721/XGalaxyMasternodeSetup.git
+git clone https://github.com/officialXGalaxy/XGCSMasternodeSetup.git
 ```
 
 __NOTE:__ in case if you will need to re-download this setup script or binaries from github repo, use the following git command:
