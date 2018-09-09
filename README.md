@@ -46,6 +46,14 @@ git pull
 cd ~/XGalaxyMasternodeSetup
 bash xgalaxy-setup.sh
 ```
+
+**6) Run the update script** only run below command if this is an binary update not a fresh install
+
+```bash
+cd ~/XGalaxyMasternodeSetup
+bash update.sh
+```
+
 __NOTE:__ This process may take anywhere from 5 to 20 minutes, depending on your VPS HW specs. If it's not your very first ever masternode setup, you may want to speed up the process by doing things in parallel. While the MN setup script is running on the VPS, you can spend this time getting ready to start your new masternode from your Hot Wallet (also referred to as Control Wallet) by following instructions in next step (6).
 
 Once the script completes, it will output your VPS Public IP Address and masternode Private Key which it generated for this masternode. Detailed instructions on what to do next will be provided on the VPS console.
