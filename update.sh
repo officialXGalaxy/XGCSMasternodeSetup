@@ -44,14 +44,14 @@ fi
 
 #Installing Daemon
 cd ~
-wget https://github.com/officialXGalaxy/XGalaxy/releases/download/1.0.1/xGalaxy_1.0.1_ubuntu16.tar.gz
-tar -xzf xGalaxy_1.0.1_ubuntu16.tar.gz -C ~/XGCSMasternodeSetup
-rm -rf xGalaxy_1.0.1_ubuntu16.tar.gz
+wget https://github.com/officialXGalaxy/XGalaxy/releases/download/1.0.2/xGalaxy_1.0.2_ubuntu16.tar.gz
+tar -xzf xGalaxy_1.0.2_ubuntu16.tar.gz -C ~/XGCSMasternodeSetup
+rm -rf xGalaxy_1.0.2_ubuntu16.tar.gz
 
   stop_daemon
  
 # Deploy binaries to /usr/bin
-sudo cp ~/XGCSMasternodeSetup/xGalaxy_1.0.1_ubuntu16/xgalaxy* /usr/bin/
+sudo cp ~/XGCSMasternodeSetup/xGalaxy_1.0.2_ubuntu16/xgalaxy* /usr/bin/
 sudo chmod 755 -R ~/XGCSMasternodeSetup
 sudo chmod 755 /usr/bin/xgalaxy* 
 #Finally, starting xgalaxy daemon
