@@ -99,6 +99,7 @@ else
     echo -e "${GREEN}Updating system and installing required packages...${NC}"
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
+apt-get update -y
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 sudo apt-get -y autoremove
@@ -257,6 +258,11 @@ maxconnections=200
 externalip=$publicip:$PORT
 masternode=1
 masternodeprivkey=$genkey
+addnode=89.40.15.120
+addnode=212.24.108.232
+addnode=185.69.55.114
+addnode=176.223.128.205
+addnode=176.223.129.88
 
 EOF
 
