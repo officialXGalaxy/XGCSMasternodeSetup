@@ -103,7 +103,7 @@ apt-get update -y
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 sudo apt-get -y autoremove
-sudo apt-get -y install wget nano htop jq
+sudo apt-get -y install wget nano htop jq git
 sudo apt-get -y install libzmq3-dev
 sudo apt-get -y install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
 sudo apt-get -y install libevent-dev
