@@ -79,8 +79,10 @@ clear
 # Determine primary public IP address
 dpkg -s dnsutils 2>/dev/null >/dev/null || sudo apt-get -y install dnsutils
 publicip=$(dig +short myip.opendns.com @resolver1.opendns.com)
-if [ -ne "$publicip" ]; then
-	publicip=$(curl -4 icanhazip.com)
+if [ -n "$publicip" ]; then
+	echo ""
+else
+    publicip=$(curl -4 icanhazip.com)
 fi
 
 if [ -n "$publicip" ]; then
