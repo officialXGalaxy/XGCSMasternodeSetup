@@ -12,19 +12,19 @@
 function clear_stdin { while read -r -t 0; do read -r; done; }
 
 #Delay script execution for N seconds
-function delay { echo -e "${GREEN}Sleep for $1 seconds...${NC}"; sleep "$1"; }
+function delay { echo -e "${GREEN}Sleep for $1 ...${NC}"; sleep "$1"; }
 
 #Stop daemon if it's already running
 function stop_daemon {
     if pgrep -x 'xgalaxyd' > /dev/null; then
         echo -e "${YELLOW}Attempting to stop xgalaxyd${NC}"
         xgalaxy-cli stop
-        delay 30
+        delay 30s
         if pgrep -x 'xgalaxy' > /dev/null; then
             echo -e "${RED}xgalaxyd daemon is still running!${NC} \a"
             echo -e "${RED}Attempting to kill...${NC}"
             pkill -9 xgalaxyd
-            delay 30
+            delay 30s
             if pgrep -x 'xgalaxyd' > /dev/null; then
                 echo -e "${RED}Can't stop xgalaxyd! Reboot and try again...${NC} \a"
                 exit 2
