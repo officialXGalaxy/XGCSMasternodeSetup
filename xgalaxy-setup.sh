@@ -278,7 +278,7 @@ addnode=212.24.106.214
 addnode=89.40.14.229
 addnode=212.24.96.212
 addnode=195.181.244.253 
-addnode=addnode=176.223.138.175 
+addnode=176.223.138.175 
 addnode=194.135.90.225 
 addnode=195.181.244.83 
 addnode=195.181.245.38 
