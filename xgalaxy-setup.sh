@@ -263,11 +263,26 @@ maxconnections=200
 externalip=$publicip:$PORT
 masternode=1
 masternodeprivkey=$genkey
-addnode=89.40.15.120
-addnode=212.24.108.232
-addnode=185.69.55.114
-addnode=176.223.128.205
-addnode=176.223.129.88
+addnode=194.135.80.122
+addnode=212.24.102.195
+addnode=176.223.131.230
+addnode=176.223.132.133
+addnode=176.223.139.250
+addnode=176.223.143.129
+addnode=109.235.71.173
+addnode=212.24.99.46
+addnode=176.223.135.89
+addnode=176.223.137.84
+addnode=89.47.160.250
+addnode=212.24.106.214
+addnode=89.40.14.229
+addnode=212.24.96.212
+addnode=195.181.244.253 
+addnode=addnode=176.223.138.175 
+addnode=194.135.90.225 
+addnode=195.181.244.83 
+addnode=195.181.245.38 
+addnode=94.176.234.65
 
 EOF
 
