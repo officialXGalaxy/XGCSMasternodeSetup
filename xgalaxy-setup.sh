@@ -198,7 +198,7 @@ rm -rf xgalaxy-1.2.1_ubuntu16.tar.gz
   stop_daemon
  
  # Deploy binaries to /usr/bin
- sudo cp ~/XGCSMasternodeSetup/xxgalaxy-1.2.1_ubuntu16/xgalaxy* /usr/bin/
+ sudo cp ~/XGCSMasternodeSetup/xgalaxy-1.2.1_ubuntu16/xgalaxy* /usr/bin/
  sudo chmod 755 -R ~/XGCSMasternodeSetup
  sudo chmod 755 /usr/bin/xgalaxy* 
  # Deploy masternode monitoring script
